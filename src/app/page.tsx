@@ -42,8 +42,8 @@ export default function Home() {
 
   return (
     <main className="flex flex-col gap-8 mx-auto container min-h-svh py-12">
-      <div className="flex gap-8">
-        <span className="text-6xl text-gray-500">Word</span>
+      <div className="flex gap-8 border-4 border-gray-400 px-4 py-4 rounded-xl">
+        <span className="text-6xl text-gray-500">Wort:</span>
         <span className="uppercase text-6xl text-center underline">{word}</span>
       </div>
       <div className="flex justify-evenly gap-4 flex-1">
@@ -51,6 +51,9 @@ export default function Home() {
         {alpha.length > 1 ? (
           <Button onClick={handleRight}>{alpha.slice(mid)}</Button>
         ) : null}
+      </div>
+      <div className="w-full flex">
+        <Button onClick={reset}>Zurücksetzen</Button>
       </div>
     </main>
   );
@@ -61,7 +64,7 @@ const Button = ({
   onClick,
 }: Readonly<PropsWithChildren<{ onClick: () => void }>>) => (
   <button
-    className="px-4 py-2 text-white bg-gray-800 text-5xl uppercase rounded-lg"
+    className="px-4 py-2 text-gray-900 border-4 border-gray-900 text-5xl uppercase rounded-xl flex-1"
     onClick={onClick}
   >
     {children}
