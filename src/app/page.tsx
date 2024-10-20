@@ -2,7 +2,7 @@
 import { PropsWithChildren, useMemo, useState } from "react";
 import { FaDeleteLeft } from "react-icons/fa6";
 import { GrPowerReset } from "react-icons/gr";
-import { MdDelete, MdSpaceBar } from "react-icons/md";
+import { MdSpaceBar } from "react-icons/md";
 
 // alphabet in half width characters in an 2d array
 const ALPHABET = "abcdefghijklmnopqrstuvwxyz";
@@ -118,7 +118,7 @@ const Button = ({
   onClick,
 }: Readonly<PropsWithChildren<{ onClick: () => void }>>) => (
   <button
-    className="px-4 py-2 text-gray-900 border-4 border-gray-900 text-5xl uppercase rounded-xl flex-1"
+    className="px-4 py-2 text-gray-900 border-4 border-gray-900 text-5xl uppercase rounded-xl flex-1 flex flex-wrap justify-start font-bold"
     onClick={onClick}
   >
     {children}
