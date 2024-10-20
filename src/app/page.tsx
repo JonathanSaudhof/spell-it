@@ -2,7 +2,7 @@
 import { PropsWithChildren, useMemo, useState } from "react";
 import { FaDeleteLeft } from "react-icons/fa6";
 import { GrPowerReset } from "react-icons/gr";
-import { MdSpaceBar } from "react-icons/md";
+import { MdDelete, MdSpaceBar } from "react-icons/md";
 
 // alphabet in half width characters in an 2d array
 const ALPHABET = "abcdefghijklmnopqrstuvwxyz";
