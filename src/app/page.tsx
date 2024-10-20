@@ -1,5 +1,7 @@
 "use client";
 import { PropsWithChildren, useMemo, useState } from "react";
+import { GrPowerReset } from "react-icons/gr";
+import { MdSpaceBar } from "react-icons/md";
 
 // alphabet in half width characters in an 2d array
 const ALPHABET = "abcdefghijklmnopqrstuvwxyz";
@@ -19,10 +21,15 @@ export default function Home() {
       addToWord(newAlpha);
       return;
     }
+
     setAlpha(() => newAlpha);
   };
 
-  const reset = () => {
+  const addSpace = () => {
+    setWord((prev) => prev + "_");
+  };
+
+  const resetAll = () => {
     setWord("");
     setAlpha(ALPHABET);
   };
@@ -40,11 +47,18 @@ export default function Home() {
 
   const buttonSlice = useMemo(() => getAlpha(alpha), [alpha]);
 
+  const resetAlphabet = () => {
+    setAlpha(ALPHABET);
+  };
+
   return (
-    <main className="flex flex-col gap-8 mx-auto container min-h-svh py-12">
+    <main className="flex flex-col gap-8  min-h-svh py-12 p-4">
       <div className="flex gap-8 border-4 border-gray-400 px-4 py-4 rounded-xl">
-        <span className="text-6xl text-gray-500">Wort:</span>
-        <span className="uppercase text-6xl text-center underline">{word}</span>
+        <div className="border-r-4 content after:animate-pulse">
+          <span className="uppercase text-4xl md:text-5xl lg:text-6xl text-center ">
+            {word}
+          </span>
+        </div>
       </div>
       <div className="flex justify-evenly gap-4 flex-1">
         {buttonSlice.map((slice) => {
@@ -65,8 +79,25 @@ export default function Home() {
           );
         })}
       </div>
-      <div className="w-full flex">
-        <Button onClick={reset}>Zurücksetzen</Button>
+      <button
+        onClick={addSpace}
+        className="flex justify-center items-center gap-4 px-4 py-2 text-gray-500 border-4 border-gray-500 text-2xl md:text-4xl lg:text-6xl uppercase rounded-xl"
+      >
+        <MdSpaceBar />
+      </button>
+      <div className="w-full flex lg:flex-row gap-4">
+        <button
+          className="flex items-center gap-4 px-4 py-2 text-gray-500 border-4 border-gray-500 text-2xl md:text-4xl lg:text-6xl uppercase rounded-xl flex-1"
+          onClick={resetAlphabet}
+        >
+          <GrPowerReset /> Von Vorne
+        </button>
+        <button
+          className="flex items-center gap-4 px-4 py-2 text-gray-500 border-4 border-gray-500 text-2xl md:text-4xl lg:text-6xl uppercase rounded-xl flex-1"
+          onClick={resetAll}
+        >
+          <GrPowerReset /> Wort Löschen
+        </button>
       </div>
     </main>
   );
@@ -77,7 +108,7 @@ const Button = ({
   onClick,
 }: Readonly<PropsWithChildren<{ onClick: () => void }>>) => (
   <button
-    className="px-4 py-2 text-gray-900 border-4 border-gray-900 text-5xl uppercase rounded-xl flex-1 flex flex-wrap justify-center items-center"
+    className="px-4 py-2 text-gray-900 border-4 border-gray-900 text-5xl uppercase rounded-xl flex-1"
     onClick={onClick}
   >
     {children}
