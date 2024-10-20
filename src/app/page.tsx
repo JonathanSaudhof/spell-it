@@ -1,5 +1,6 @@
 "use client";
 import { PropsWithChildren, useMemo, useState } from "react";
+import { FaDeleteLeft } from "react-icons/fa6";
 import { GrPowerReset } from "react-icons/gr";
 import { MdSpaceBar } from "react-icons/md";
 
@@ -51,14 +52,23 @@ export default function Home() {
     setAlpha(ALPHABET);
   };
 
+  const deleteLast = () => {
+    setWord((prev) => prev.slice(0, -1));
+  };
+
   return (
     <main className="flex flex-col gap-8  min-h-svh py-12 p-4">
       <div className="flex gap-8 border-4 border-gray-400 px-4 py-4 rounded-xl">
-        <div className="border-r-4 content after:animate-pulse">
-          <span className="uppercase text-4xl md:text-5xl lg:text-6xl text-center ">
-            {word}
-          </span>
+        <div className="flex grow">
+          <div className="border-r-4 content after:animate-pulse h-14">
+            <span className="uppercase text-4xl md:text-5xl lg:text-6xl text-center ">
+              {word}
+            </span>
+          </div>
         </div>
+        <button className="flex self-end" onClick={deleteLast}>
+          <FaDeleteLeft className="ttext-4xl md:text-5xl lg:text-6xl text-gray-500" />
+        </button>
       </div>
       <div className="flex justify-evenly gap-4 flex-1">
         {buttonSlice.map((slice) => {
