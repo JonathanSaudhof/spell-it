@@ -82,20 +82,19 @@ export default function Home() {
               ))}
           </div>
         </Button>
-        {alpha.length > 1 ? (
-          <Button onClick={handleRight}>
-            <div className="flex flex-wrap justify-center">
-              {alpha
-                .slice(mid)
-                .split("")
-                .map((char) => (
-                  <span key={char} className="p-4 lg:h-24 lg:w-24 font-bold">
-                    {char}
-                  </span>
-                ))}
-            </div>
-          </Button>
-        ) : null}
+
+        <Button onClick={handleRight}>
+          <div className="flex flex-wrap justify-center">
+            {alpha
+              .slice(mid)
+              .split("")
+              .map((char) => (
+                <span key={char} className="p-4 lg:h-24 lg:w-24 font-bold">
+                  {char}
+                </span>
+              ))}
+          </div>
+        </Button>
       </div>
       <button
         onClick={addSpace}
