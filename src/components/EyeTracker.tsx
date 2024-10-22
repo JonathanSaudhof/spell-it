@@ -1,20 +1,45 @@
 "use client";
-import Script from "next/script";
-import { useEffect } from "react";
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-expect-error
+import webgazer from "@/lib/webgazer";
+import { PropsWithChildren, useEffect, useState } from "react";
 
-export function EyeTracker() {
+declare global {
+  interface Window {
+    saveDataAcrossSessions: boolean;
+  }
+}
+
+export function EyeTracker({ children }: PropsWithChildren) {
+  const [isLoaded, setIsLoaded] = useState(false);
+
   useEffect(() => {
-    const webgazer = window.webgazer;
-    webgazer
-      .setGazeListener((data: { x: number; y: number }) => {
-        console.log(data.x, data.y);
-      })
-      .begin();
+    async function setup() {
+      await webgazer
+        .showVideoPreview(false)
+        .setRegression("ridge") /* currently must set regression and tracker */
+        .setTracker("TFFacemesh")
+        .showPredictionPoints(true)
+        .saveDataAcrossSessions(true)
+        .applyKalmanFilter(true)
+        .begin()
+        .then(() => {
+          setIsLoaded(true);
+        });
+    }
+
+    if (typeof window !== "undefined") {
+      setup();
+    }
+
+    // return () => webgazer.end();
   }, []);
-  return (
-    <div className="relative">
-      <Script src="https://webgazer.cs.brown.edu/webgazer.js" />
-      {}
+
+  return !isLoaded ? (
+    <div className="w-screen h-screen flex justify-center items-center text-4xl animate-pulse">
+      Loading Eyetracker
     </div>
+  ) : (
+    <div className="relative">{children}</div>
   );
 }
