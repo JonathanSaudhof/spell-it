@@ -4,12 +4,21 @@ import { FaDeleteLeft } from "react-icons/fa6";
 import { GrPowerReset } from "react-icons/gr";
 import { MdSpaceBar } from "react-icons/md";
 
+import dynamic from "next/dynamic";
+
 // alphabet in half width characters in an 2d array
 const ALPHABET = "abcdefghijklmnopqrstuvwxyz";
 
 export default function Home() {
   const [alpha, setAlpha] = useState(ALPHABET);
   const [word, setWord] = useState("");
+
+  const EyeTracker = dynamic(
+    () => import("@/components/EyeTracker").then((mod) => mod.EyeTracker),
+    {
+      ssr: false,
+    }
+  );
 
   const addToWord = (char: string) => {
     setWord((prev) => prev + char);
@@ -57,7 +66,8 @@ export default function Home() {
   };
 
   return (
-    <main className="flex flex-col gap-8  min-h-svh py-12 p-4">
+    <main className="flex flex-col gap-8 mx-auto container min-h-svh py-12">
+      <EyeTracker />
       <div className="flex gap-8 border-4 border-gray-400 px-4 py-4 rounded-xl">
         <div className="flex grow">
           <div className="border-r-4 content after:animate-pulse h-14">
