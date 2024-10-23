@@ -2,8 +2,6 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-expect-error
 import webgazer from "@/lib/webgazer";
-import localforage from "localforage";
-import { useRouter } from "next/navigation";
 import { PropsWithChildren, useEffect, useState } from "react";
 
 declare global {
@@ -14,17 +12,6 @@ declare global {
 
 export function EyeTracker({ children }: PropsWithChildren) {
   const [isLoaded, setIsLoaded] = useState(false);
-
-  const router = useRouter();
-
-  useEffect(() => {
-    localforage.getItem("webgazerGlobalData").then((data) => {
-      console.log("data", data);
-      if (data === null) {
-        router.push("/calibration");
-      }
-    });
-  }, []);
 
   useEffect(() => {
     async function setup() {
@@ -48,13 +35,14 @@ export function EyeTracker({ children }: PropsWithChildren) {
     // return () => webgazer.end();
   }, []);
 
-  console.log("isLoaded", isLoaded);
-
-  return !isLoaded ? (
-    <div className="w-screen h-screen flex justify-center items-center text-4xl animate-pulse">
-      Loading Eyetracker
+  return (
+    <div className="relative">
+      {!isLoaded ? (
+        <div className="fixed flex justify-center items-center text-lg font-bold animate-pulse py-4 w-full">
+          Loading Eyetracker
+        </div>
+      ) : null}
+      {children}
     </div>
-  ) : (
-    <div className="relative">{children}</div>
   );
 }

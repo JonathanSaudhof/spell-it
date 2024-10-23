@@ -1,7 +1,7 @@
 "use client";
 import { PropsWithChildren, useMemo, useState } from "react";
 import { FaDeleteLeft } from "react-icons/fa6";
-import { GrPowerReset } from "react-icons/gr";
+import { GrPowerReset, GrPrevious } from "react-icons/gr";
 import { MdSpaceBar } from "react-icons/md";
 
 // alphabet in half width characters in an 2d array
@@ -89,24 +89,25 @@ export default function Speller() {
           );
         })}
       </div>
-      <button
-        onClick={addSpace}
-        className="flex justify-center items-center gap-4 px-4 py-2 text-gray-500 border-4 border-gray-500 text-2xl md:text-4xl lg:text-6xl uppercase rounded-xl"
-      >
-        <MdSpaceBar />
-      </button>
+
       <div className="w-full flex lg:flex-row gap-4">
         <button
-          className="flex items-center gap-4 px-4 py-2 text-gray-500 border-4 border-gray-500 text-2xl md:text-4xl lg:text-6xl uppercase rounded-xl flex-1"
-          onClick={resetAlphabet}
+          onClick={addSpace}
+          className="flex justify-center items-center gap-4 px-4 py-2 text-gray-500 border-4 border-gray-500 text-2xl md:text-4xl lg:text-6xl uppercase rounded-xl flex-1"
         >
-          <GrPowerReset /> Von Vorne
+          <MdSpaceBar />
         </button>
         <button
-          className="flex items-center gap-4 px-4 py-2 text-gray-500 border-4 border-gray-500 text-2xl md:text-4xl lg:text-6xl uppercase rounded-xl flex-1"
+          className="flex items-center gap-4 px-8 py-2 text-gray-500 border-4 border-gray-500 text-2xl md:text-4xl lg:text-6xl uppercase rounded-xl justify-center"
+          onClick={resetAlphabet}
+        >
+          <GrPrevious />
+        </button>
+        <button
+          className="flex items-center gap-4 px-8 py-2 text-gray-500 border-4 border-gray-500 text-2xl md:text-4xl lg:text-6xl uppercase rounded-xl justify-center"
           onClick={resetAll}
         >
-          <GrPowerReset /> Wort Löschen
+          <GrPowerReset />
         </button>
       </div>
     </main>
