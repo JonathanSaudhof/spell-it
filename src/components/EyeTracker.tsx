@@ -20,7 +20,7 @@ export function EyeTracker({ children }: PropsWithChildren) {
         .setRegression("ridge") /* currently must set regression and tracker */
         .setTracker("TFFacemesh")
         .showPredictionPoints(true)
-        .saveDataAcrossSessions(true)
+        .saveDataAcrossSessions(false)
         .applyKalmanFilter(true)
         .begin()
         .then(() => {
