@@ -7,6 +7,7 @@ export default function manifest(): MetadataRoute.Manifest {
     description: "Spell it helps you to spell with your eyes",
     start_url: "/",
     display: "standalone",
+    orientation: "landscape",
     background_color: "#ffffff",
     theme_color: "#000000",
     icons: [

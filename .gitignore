@@ -36,3 +36,7 @@ yarn-error.log*
 next-env.d.ts
 
 certificates
+
+
+src/public/sw*
+src/public/swe-worker*
