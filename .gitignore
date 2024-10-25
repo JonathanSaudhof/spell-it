@@ -38,5 +38,5 @@ next-env.d.ts
 certificates
 
 
-src/public/sw*
-src/public/swe-worker*
+/public/sw*
+/public/swe-worker*
