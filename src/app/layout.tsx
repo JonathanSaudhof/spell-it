@@ -25,7 +25,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   const EyeTracker = dynamic(
-    () => import("@/components/EyeTracker").then((mod) => mod.EyeTracker),
+    () => import("@/components/EyeTracker").then((mod) => mod.default),
     {
       ssr: false,
     }
