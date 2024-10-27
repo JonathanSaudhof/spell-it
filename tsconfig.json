@@ -19,7 +19,8 @@
     ],
     "types": ["@serwist/next/typings"],
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./src/*"],
+      "@/lib/*": ["./lib/*"]
     }
   },
   "include": [
@@ -27,7 +28,8 @@
     "src/**/*",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    "./lib/**/*"
+    "./lib/**/*",
+    "lib"
   ],
   "exclude": ["node_modules", "./public/sw.js"]
 }
