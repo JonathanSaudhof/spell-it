@@ -1,8 +1,11 @@
 "use client";
-import { PropsWithChildren, useMemo, useState } from "react";
+import Link from "next/link";
+import { useMemo, useState } from "react";
 import { FaDeleteLeft } from "react-icons/fa6";
 import { GrPowerReset, GrPrevious } from "react-icons/gr";
+import { IoSettingsOutline } from "react-icons/io5";
 import { MdSpaceBar } from "react-icons/md";
+import { Button } from "./ui/Navgation";
 
 // alphabet in half width characters in an 2d array
 const ALPHABET = "abcdefghijklmnopqrstuvwxyz";
@@ -17,7 +20,6 @@ export default function Speller() {
   };
 
   const handleLeft = (newAlpha: string) => {
-    console.log(newAlpha);
     if (newAlpha.length === 1) {
       addToWord(newAlpha);
       return;
@@ -70,13 +72,17 @@ export default function Speller() {
           <FaDeleteLeft className="ttext-4xl md:text-5xl lg:text-6xl text-gray-500" />
         </button>
       </div>
-      <div className="flex justify-evenly gap-4 flex-1">
+      <div className="flex gap-4 flex-1">
         {buttonSlice.map((slice) => {
           if (slice.length === 0) {
             return null;
           }
           return (
-            <Button key={slice} onClick={() => handleLeft(slice)}>
+            <Button
+              key={slice}
+              onClick={() => handleLeft(slice)}
+              className="px-4 py-2 text-gray-900 border-4 border-gray-900 text-5xl uppercase rounded-xl flex-1 flex flex-wrap justify-start font-bold"
+            >
               {slice.split("").map((char) => (
                 <span
                   key={char}
@@ -91,6 +97,12 @@ export default function Speller() {
       </div>
 
       <div className="w-full flex lg:flex-row gap-4">
+        <Link
+          href="/calibration"
+          className="flex justify-center items-center gap-4 px-4 py-2 text-gray-500 border-4 border-gray-500 text-2xl md:text-4xl lg:text-6xl uppercase rounded-xl"
+        >
+          <IoSettingsOutline />
+        </Link>
         <button
           onClick={addSpace}
           className="flex justify-center items-center gap-4 px-4 py-2 text-gray-500 border-4 border-gray-500 text-2xl md:text-4xl lg:text-6xl uppercase rounded-xl flex-1"
@@ -113,15 +125,3 @@ export default function Speller() {
     </main>
   );
 }
-
-const Button = ({
-  children,
-  onClick,
-}: Readonly<PropsWithChildren<{ onClick: () => void }>>) => (
-  <button
-    className="px-4 py-2 text-gray-900 border-4 border-gray-900 text-5xl uppercase rounded-xl flex-1 flex flex-wrap justify-start font-bold"
-    onClick={onClick}
-  >
-    {children}
-  </button>
-);
