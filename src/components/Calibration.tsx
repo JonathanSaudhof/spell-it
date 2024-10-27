@@ -4,7 +4,6 @@ import {
   ElementRef,
   forwardRef,
   ReactNode,
-  use,
   useCallback,
   useEffect,
   useImperativeHandle,
@@ -47,7 +46,7 @@ export function Calibration() {
         key={i}
         ref={i === elementCount ? currElement : null}
         onFinished={() => {
-          if (elementCount >= COUNTER_ELEMENT_COUNT) {
+          if (elementCount >= COUNTER_ELEMENT_COUNT && webgazer) {
             console.log("Calibration finished");
             webgazer.removeMouseEventListeners();
             return;
