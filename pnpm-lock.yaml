@@ -14,9 +14,6 @@ importers:
 
   apps/spell-it:
     dependencies:
-      '@jspsych/extension-webgazer':
-        specifier: ^1.1.0
-        version: 1.1.0(jspsych@8.0.2)
       '@serwist/next':
         specifier: ^9.0.9
         version: 9.0.9(next@14.2.15(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(typescript@5.6.3)(webpack@5.95.0)
@@ -53,9 +50,12 @@ importers:
       tailwind-merge:
         specifier: ^2.5.4
         version: 2.5.4
+      typings:
+        specifier: link:@serwist/next/typings
+        version: link:@serwist/next/typings
       webgazer:
-        specifier: ^3.3.0
-        version: 3.3.0(@tensorflow/tfjs-converter@3.21.0(@tensorflow/tfjs-core@3.21.0))(@tensorflow/tfjs-core@3.21.0)(seedrandom@3.0.5)
+        specifier: workspace:^
+        version: link:../../packages/WebGazer
       zod:
         specifier: ^3.23.8
         version: 3.23.8
@@ -102,7 +102,13 @@ importers:
       regression:
         specifier: 2.0.1
         version: 2.0.1
+      ts-loader:
+        specifier: ^9.5.1
+        version: 9.5.1(typescript@5.6.3)(webpack@5.95.0(webpack-cli@5.1.4))
     devDependencies:
+      '@types/node':
+        specifier: ^20
+        version: 20.17.3
       browser-sync:
         specifier: ^3.0.2
         version: 3.0.3
@@ -115,6 +121,9 @@ importers:
       rimraf:
         specifier: 2.6.3
         version: 2.6.3
+      typescript:
+        specifier: ^5
+        version: 5.6.3
       webpack:
         specifier: ^5.75.0
         version: 5.95.0(webpack-cli@5.1.4)
@@ -211,11 +220,6 @@ packages:
   '@jsdoc/salty@0.2.8':
     resolution: {integrity: sha512-5e+SFVavj1ORKlKaKr2BmTOekmXbelU7dC0cDkQLqag7xfuTPuGMUFx7KWJuv4bYZrTsoL2Z18VVCOKYxzoHcg==}
     engines: {node: '>=v12.0.0'}
-
-  '@jspsych/extension-webgazer@1.1.0':
-    resolution: {integrity: sha512-u8OyVvOlKAV0uIh0294vz2nrH7VIIodYaNsl+BU62Bfi3+1qZ84wTkdhGCGICcW60slku72iNDE24+GLfUNq5w==}
-    peerDependencies:
-      jspsych: '>=7.0.0'
 
   '@next/env@14.2.15':
     resolution: {integrity: sha512-S1qaj25Wru2dUpcIZMjxeMVSwkt8BK4dmWHHiBuRstcIyOsMapqT4A4jSB6onvqeygkSSmOkyny9VVx8JIGamQ==}
@@ -2518,6 +2522,10 @@ packages:
     resolution: {integrity: sha512-UjgapumWlbMhkBgzT7Ykc5YXUT46F0iKu8SGXq0bcwP5dz/h0Plj6enJqjz1Zbq2l5WaqYnrVbwWOWMyF3F47g==}
     engines: {node: '>=0.10.0'}
 
+  source-map@0.7.4:
+    resolution: {integrity: sha512-l3BikUxvPOcn5E74dZiq5BGsTb5yEwhaTSzccU6t4sDOH8NWJCstKO5QT2CvtFoK6F0saL7p9xHAqHOlCPJygA==}
+    engines: {node: '>= 8'}
+
   source-map@0.8.0-beta.0:
     resolution: {integrity: sha512-2ymg6oRBpebeZi9UUNsgQ89bhx01TcTkmNTGnNO88imTmbSgy4nfujrgVEFKWpMTEGA11EDkTt7mqObTPdigIA==}
     engines: {node: '>= 8'}
@@ -2702,6 +2710,13 @@ packages:
   ts-interface-checker@0.1.13:
     resolution: {integrity: sha512-Y/arvbn+rrz3JCKl9C4kVNfTfSm2/mEp5FSz5EsZSANGPSlQrpRI5M4PKF+mJnE52jOO90PnPSc3Ur3bTQw0gA==}
 
+  ts-loader@9.5.1:
+    resolution: {integrity: sha512-rNH3sK9kGZcH9dYzC7CewQm4NtxJTjSEVRJ2DyBZR7f8/wcta+iV44UPCXc5+nzDzivKtlzV6c9P4e+oFhDLYg==}
+    engines: {node: '>=12.0.0'}
+    peerDependencies:
+      typescript: '*'
+      webpack: ^5.0.0
+
   tsconfig-paths@3.15.0:
     resolution: {integrity: sha512-2Ac2RgzDe/cn48GvOe3M+o82pEFewD3UPbyoUHHdKasHwJKjds4fLXWf/Ux5kATBKN20oaFGu+jbElp1pos0mg==}
 
@@ -2812,9 +2827,6 @@ packages:
   uri-js@4.4.1:
     resolution: {integrity: sha512-7rKUyy33Q1yc98pQ1DAmLtwX109F7TIfWlW1Ydo8Wl1ii1SeHieeh0HHfPeL2fMXK6z0s8ecKs9frCuLJvndBg==}
 
-  user@0.0.0:
-    resolution: {integrity: sha512-eRNM5isOvr6aEFAGi1CqAkmLkYxW2NJ5ThhbD+6IJXYKM1mo7Gtxx4mQIveHz/5K3p/SVnlW9k17ETn+QAu8IQ==}
-
   util-deprecate@1.0.2:
     resolution: {integrity: sha512-EPD5q1uXyFxJpCrLnCc1nHnq3gOa6DZBocAIiI2TaSCA7VCJ1UJDMagCzIkXNsUYfD1daK//LTEQ8xiIbrHtcw==}
 
@@ -2829,9 +2841,6 @@ packages:
   watchpack@2.4.2:
     resolution: {integrity: sha512-TnbFSbcOCcDgjZ4piURLCbJ3nJhznVh9kw6F6iokjiFPl8ONxe9A6nMDVXDiNbrSfLILs6vB07F7wLBrwPYzJw==}
     engines: {node: '>=10.13.0'}
-
-  webgazer@3.3.0:
-    resolution: {integrity: sha512-IU6VzHFuaiL/27vVvxOchBVsbOVDvPYmNk3SESsWCI5Or0Rf0Xd08ku0iyuxmFhjlcmWi3sGh3rGoBOb9/YjAA==}
 
   webidl-conversions@3.0.1:
     resolution: {integrity: sha512-2JAn3z8AR6rjK8Sm8orRC0h/bcl/DqL7tRPdGZ4I1CjdF+EaMLmYxBHyXuKL849eucPFhvBoxMsflfOb8kxaeQ==}
@@ -3065,10 +3074,6 @@ snapshots:
   '@jsdoc/salty@0.2.8':
     dependencies:
       lodash: 4.17.21
-
-  '@jspsych/extension-webgazer@1.1.0(jspsych@8.0.2)':
-    dependencies:
-      jspsych: 8.0.2
 
   '@next/env@14.2.15': {}
 
@@ -5679,6 +5684,8 @@ snapshots:
 
   source-map@0.6.1: {}
 
+  source-map@0.7.4: {}
+
   source-map@0.8.0-beta.0:
     dependencies:
       whatwg-url: 7.1.0
@@ -5895,6 +5902,16 @@ snapshots:
 
   ts-interface-checker@0.1.13: {}
 
+  ts-loader@9.5.1(typescript@5.6.3)(webpack@5.95.0(webpack-cli@5.1.4)):
+    dependencies:
+      chalk: 4.1.2
+      enhanced-resolve: 5.17.1
+      micromatch: 4.0.8
+      semver: 7.6.3
+      source-map: 0.7.4
+      typescript: 5.6.3
+      webpack: 5.95.0(webpack-cli@5.1.4)
+
   tsconfig-paths@3.15.0:
     dependencies:
       '@types/json5': 0.0.29
@@ -6004,8 +6021,6 @@ snapshots:
     dependencies:
       punycode: 2.3.1
 
-  user@0.0.0: {}
-
   util-deprecate@1.0.2: {}
 
   utils-merge@1.0.1: {}
@@ -6016,19 +6031,6 @@ snapshots:
     dependencies:
       glob-to-regexp: 0.4.1
       graceful-fs: 4.2.11
-
-  webgazer@3.3.0(@tensorflow/tfjs-converter@3.21.0(@tensorflow/tfjs-core@3.21.0))(@tensorflow/tfjs-core@3.21.0)(seedrandom@3.0.5):
-    dependencies:
-      '@tensorflow-models/face-landmarks-detection': 0.0.3(@tensorflow/tfjs-converter@3.21.0(@tensorflow/tfjs-core@3.21.0))(@tensorflow/tfjs-core@3.21.0)
-      '@tensorflow/tfjs': 3.21.0(seedrandom@3.0.5)
-      localforage: 1.7.3
-      regression: 2.0.1
-      user: 0.0.0
-    transitivePeerDependencies:
-      - '@tensorflow/tfjs-converter'
-      - '@tensorflow/tfjs-core'
-      - encoding
-      - seedrandom
 
   webidl-conversions@3.0.1: {}
 

@@ -24,12 +24,12 @@
     }
   },
   "include": [
-    "apps/spell-it/next-env.d.ts",
-    "apps/spell-it/src/**/*",
+    "./next-env.d.ts",
+    "./src/**/*",
     "**/*.tsx",
     ".next/types/**/*.ts",
     "./lib/**/*",
     "lib"
   ],
-  "exclude": ["node_modules", "apps/spell-it/public/sw.js"]
+  "exclude": ["node_modules", "./public/sw.js"]
 }

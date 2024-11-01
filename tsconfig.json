@@ -1,6 +1,5 @@
 {
   "compilerOptions": {
-    "lib": ["dom", "dom.iterable", "esnext", "webworker"],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -16,20 +15,8 @@
       {
         "name": "next"
       }
-    ],
-    "types": ["@serwist/next/typings"],
-    "paths": {
-      "@/*": ["./src/*"],
-      "@/lib/*": ["./lib/*"]
-    }
+    ]
   },
-  "include": [
-    "apps/spell-it/next-env.d.ts",
-    "apps/spell-it/src/**/*",
-    "**/*.tsx",
-    ".next/types/**/*.ts",
-    "./lib/**/*",
-    "lib"
-  ],
-  "exclude": ["node_modules", "apps/spell-it/public/sw.js"]
+
+  "exclude": ["node_modules", "**/tsconfig.json"]
 }

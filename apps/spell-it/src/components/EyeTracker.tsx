@@ -1,7 +1,6 @@
 "use client";
 
 import { env } from "@/env.mjs";
-import webgazer from "@/lib/webgazer/index.mjs";
 import React, { PropsWithChildren, useEffect, useState } from "react";
 
 declare global {
@@ -10,11 +9,9 @@ declare global {
   }
 }
 
-type TWebgazer = typeof webgazer;
-
 const EyeTrackerContext = React.createContext<{
   isLoaded: boolean;
-  webgazer: TWebgazer | null;
+  webgazer: object | null;
 }>({
   isLoaded: false,
   webgazer: null,
@@ -26,36 +23,58 @@ export function useEyeTracker() {
 
 export default function EyeTracker({ children }: Readonly<PropsWithChildren>) {
   const [isLoaded, setIsLoaded] = useState(false);
-  const [webgazer, setWebgazer] = useState<TWebgazer | null>(null);
+  const [webgazer, setWebgazer] = useState<object | null>(null);
 
   const isFeatureActive = env.NEXT_PUBLIC_FEAT_EYE_TRACKER;
   const isDevelopment = env.NEXT_PUBLIC_ENV === "development";
+  const setup = function () {
+    //Set up the main canvas. The main canvas is used to calibrate the webgazer.
+    const canvas = document.getElementById(
+      "plotting_canvas"
+    ) as HTMLCanvasElement;
+
+    if (!canvas) {
+      console.error("Canvas not found");
+      return;
+    }
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    canvas.style.position = "fixed";
+  };
+
+  useEffect(() => {
+    function resize() {
+      const canvas = document.getElementById(
+        "plotting_canvas"
+      ) as HTMLCanvasElement;
+      const context = canvas.getContext("2d");
+      if (!context) {
+        return;
+      }
+      context.clearRect(0, 0, canvas.width, canvas.height);
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    window.addEventListener("resize", resize, false);
+
+    return () => window.removeEventListener("resize", resize, false);
+  }, []);
 
   useEffect(() => {
     if (typeof window !== "undefined" && isFeatureActive) {
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-expect-error
-      import("@/lib/webgazer").then((webgazer) =>
+      import("webgazer").then((webgazer) =>
         webgazer.default
-          .showVideoPreview(false)
           .setRegression("ridge")
-          .setTracker("TFFacemesh")
-          .showPredictionPoints(true)
           .saveDataAcrossSessions(true)
           .applyKalmanFilter(true)
-
+          .showPredictionPoints(true)
+          .showVideoPreview(false)
           .begin()
-          .then((instance: unknown) => {
-            (instance as typeof webgazer).removeMouseEventListeners();
-            (instance as typeof webgazer).setCameraConstraints({
-              width: { min: 320, ideal: 320, max: 320 },
-              height: { min: 240, ideal: 240, max: 240 },
-              facingMode: "user",
-              resizeMode: "crop-and-scale",
-            });
-
-            setWebgazer(instance as TWebgazer);
+          .then((instance: typeof webgazer.default) => {
+            console.log("Webgazer instance", instance);
+            setWebgazer(instance);
             console.log("Webgazer started");
+            setup();
             setIsLoaded(true);
           })
       );
@@ -64,8 +83,14 @@ export default function EyeTracker({ children }: Readonly<PropsWithChildren>) {
     // return () => webgazer.end();
   }, [isDevelopment, isFeatureActive]);
 
+  const contextValue = React.useMemo(
+    () => ({ isLoaded, webgazer }),
+    [isLoaded, webgazer]
+  );
+
   return (
-    <EyeTrackerContext.Provider value={{ isLoaded, webgazer }}>
+    <EyeTrackerContext.Provider value={contextValue}>
+      <canvas id="plotting_canvas" />
       <div className="relative">
         {!isLoaded && isFeatureActive ? (
           <div className="fixed bg-white flex justify-center items-center py-4 w-full z-50 shadow">

@@ -26,9 +26,6 @@ export function Calibration() {
     if (webgazer) {
       webgazer.addMouseEventListeners();
       webgazer.clearData();
-      webgazer.showVideoPreview(true);
-
-      await webgazer;
 
       setElementCount(0);
       router.refresh();

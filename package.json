@@ -4,6 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "dev": "turbo dev --filter spell-it",
+    "build": "turbo dev --filter spell-it",
+    "build:lib": "turbo build --filter webgazer",
     "check-types": "tsc --noEmit"
   },
   "keywords": [],
@@ -11,5 +14,6 @@
   "license": "ISC",
   "devDependencies": {
     "turbo": "^2.2.3"
-  }
+  },
+  "packageManager": "pnpm@9.1.1"
 }
