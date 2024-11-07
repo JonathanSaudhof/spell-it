@@ -1,11 +1,12 @@
 "use client";
-import Link from "next/link";
+import { readWord } from "@/lib/accessability";
+import { useRouter } from "next/navigation";
 import { useMemo, useState } from "react";
 import { FaDeleteLeft } from "react-icons/fa6";
-import { GrPowerReset, GrPrevious } from "react-icons/gr";
-import { IoSettingsOutline } from "react-icons/io5";
+import { GrPowerReset } from "react-icons/gr";
 import { MdSpaceBar } from "react-icons/md";
 import { Button } from "./ui/Navgation";
+import pageRoutes from "@/routes.config";
 
 // alphabet in half width characters in an 2d array
 const ALPHABET = "abcdefghijklmnopqrstuvwxyz";
@@ -13,6 +14,7 @@ const ALPHABET = "abcdefghijklmnopqrstuvwxyz";
 export default function Speller() {
   const [alpha, setAlpha] = useState(ALPHABET);
   const [word, setWord] = useState("");
+  const router = useRouter();
 
   const addToWord = (char: string) => {
     setWord((prev) => prev + char);
@@ -38,71 +40,42 @@ export default function Speller() {
   };
 
   function getAlpha(alphaSlice: string): string[] {
-    const oneThird = Math.ceil(alphaSlice.length / 3);
-    const twoThird = Math.ceil((alphaSlice.length / 3) * 2);
-
-    const left = alphaSlice.slice(0, oneThird);
-    const mid = alphaSlice.slice(oneThird, twoThird);
-    const right = alphaSlice.slice(twoThird);
-
-    return [left, mid, right];
+    return alphaSlice.split("");
   }
 
   const buttonSlice = useMemo(() => getAlpha(alpha), [alpha]);
-
-  const resetAlphabet = () => {
-    setAlpha(ALPHABET);
-  };
 
   const deleteLast = () => {
     setWord((prev) => prev.slice(0, -1));
   };
 
   return (
-    <main className="flex flex-col gap-8 mx-auto container min-h-svh py-12">
-      <div className="flex gap-8 border-4 border-gray-400 px-4 py-4 rounded-xl">
+    <main className="flex flex-col gap-8 mx-auto container min-h-svh p-8">
+      <div className="flex gap-8 border-4 border-gray-400 px-4 py-2 rounded-xl">
         <div className="flex grow">
-          <div className="border-r-4 content after:animate-pulse h-14">
-            <span className="uppercase text-4xl md:text-5xl lg:text-6xl text-center ">
+          <div className="border-r-4 content after:animate-pulse h-10">
+            <span className="uppercase text-3xl md:text-4xl lg:text-5xl text-center ">
               {word}
             </span>
           </div>
         </div>
+
         <button className="flex self-end" onClick={deleteLast}>
-          <FaDeleteLeft className="ttext-4xl md:text-5xl lg:text-6xl text-gray-500" />
+          <FaDeleteLeft className="text-3xl md:text-4xl lg:text-5xl text-gray-500" />
         </button>
       </div>
-      <div className="flex gap-4 flex-1">
-        {buttonSlice.map((slice) => {
-          if (slice.length === 0) {
-            return null;
-          }
-          return (
-            <Button
-              key={slice}
-              onClick={() => handleLeft(slice)}
-              className="px-4 py-2 text-gray-900 border-4 border-gray-900 text-5xl uppercase rounded-xl flex-1 flex flex-wrap justify-start font-bold"
-            >
-              {slice.split("").map((char) => (
-                <span
-                  key={char}
-                  className="h-24 w-24 flex items-center justify-center"
-                >
-                  {char}
-                </span>
-              ))}
-            </Button>
-          );
-        })}
-      </div>
-
       <div className="w-full flex lg:flex-row gap-4">
-        <Link
-          href="/calibration"
-          className="flex justify-center items-center gap-4 px-4 py-2 text-gray-500 border-4 border-gray-500 text-2xl md:text-4xl lg:text-6xl uppercase rounded-xl"
+        <button
+          onClick={() => {
+            router.push(pageRoutes.selection);
+          }}
+          onMouseEnter={() => {
+            router.prefetch(pageRoutes.selection);
+          }}
+          className="flex justify-center items-center gap-4 px-4 py-2 w-1/4 text-gray-500 border-4 border-gray-500 text-2xl md:text-4xl lg:text-6xl uppercase rounded-xl"
         >
-          <IoSettingsOutline />
-        </Link>
+          🗂️
+        </button>
         <button
           onClick={addSpace}
           className="flex justify-center items-center gap-4 px-4 py-2 text-gray-500 border-4 border-gray-500 text-2xl md:text-4xl lg:text-6xl uppercase rounded-xl flex-1"
@@ -111,9 +84,9 @@ export default function Speller() {
         </button>
         <button
           className="flex items-center gap-4 px-8 py-2 text-gray-500 border-4 border-gray-500 text-2xl md:text-4xl lg:text-6xl uppercase rounded-xl justify-center"
-          onClick={resetAlphabet}
+          onClick={() => readWord(word)}
         >
-          <GrPrevious />
+          <span className="h-20 w-20 flex items-center justify-center">🔊</span>
         </button>
         <button
           className="flex items-center gap-4 px-8 py-2 text-gray-500 border-4 border-gray-500 text-2xl md:text-4xl lg:text-6xl uppercase rounded-xl justify-center"
@@ -121,6 +94,27 @@ export default function Speller() {
         >
           <GrPowerReset />
         </button>
+      </div>
+      <div className="grid grid-cols-4 xl:grid-cols-6 gap-12 items-center">
+        {buttonSlice.map((slice) => {
+          if (slice.length === 0) {
+            return null;
+          }
+          return (
+            <Button
+              key={slice}
+              onClick={() => handleLeft(slice)}
+              className="px-4 py-2 text-gray-900 border-4 border-gray-900 text-4xl uppercase rounded-xl flex-1 flex flex-wrap justify-start font-bold hover:bg-slate-300"
+            >
+              <span
+                key={slice}
+                className="h-20 w-20 flex items-center justify-center"
+              >
+                {slice}
+              </span>
+            </Button>
+          );
+        })}
       </div>
     </main>
   );
