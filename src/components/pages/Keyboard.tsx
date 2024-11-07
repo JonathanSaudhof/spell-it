@@ -24,7 +24,7 @@ export default function Keyboard() {
     if (word.length > 0) {
       const soundSource = "/click.wav";
       const sound = new Audio(soundSource);
-      sound.volume = 0.5;
+      sound.volume = 0.05;
       sound.play();
     }
   }, [word]);
@@ -59,18 +59,14 @@ export default function Keyboard() {
 
   return (
     <MainWrapper>
-      <div className="flex gap-8 border-4 border-gray-400 px-4 py-2 rounded-xl">
-        <div className="flex grow">
+      <div className="flex gap-4">
+        <div className="flex grow border-4 border-gray-400 p-4 rounded-xl">
           <div className="border-r-4 content after:animate-pulse h-10">
             <span className="uppercase text-3xl md:text-4xl lg:text-5xl text-center ">
               {word}
             </span>
           </div>
         </div>
-
-        <button className="flex self-end" onClick={deleteLast}>
-          <FaDeleteLeft className="text-3xl md:text-4xl lg:text-5xl text-gray-500" />
-        </button>
       </div>
       <hr />
       <div className="w-full flex lg:flex-row gap-4">
@@ -87,6 +83,12 @@ export default function Keyboard() {
         >
           <span className="h-20 w-20 flex items-center justify-center">🔊</span>
         </Button>
+        <button
+          className="flex items-center gap-4 px-8 py-2 bg-blue-300 text-2xl md:text-4xl lg:text-6xl uppercase rounded-xl justify-center"
+          onClick={deleteLast}
+        >
+          <FaDeleteLeft />
+        </button>
         <button
           className="flex items-center gap-4 px-8 py-2 bg-blue-300 text-2xl md:text-4xl lg:text-6xl uppercase rounded-xl justify-center"
           onClick={resetAll}

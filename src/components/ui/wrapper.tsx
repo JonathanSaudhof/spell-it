@@ -3,7 +3,7 @@ export function MainWrapper({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return <main className="flex flex-col gap-8 min-h-svh p-8">{children}</main>;
+  return <main className="flex flex-col gap-6 min-h-svh p-8">{children}</main>;
 }
 
 export function Grid({ children }: Readonly<{ children: React.ReactNode }>) {
