@@ -1,12 +1,11 @@
 "use client";
 import { readWord } from "@/lib/accessability";
-import { useRouter } from "next/navigation";
+import pageRoutes from "@/routes.config";
 import { useMemo, useState } from "react";
 import { FaDeleteLeft } from "react-icons/fa6";
 import { GrPowerReset } from "react-icons/gr";
 import { MdSpaceBar } from "react-icons/md";
 import { Button, LinkButton } from "../ui/buttons";
-import pageRoutes from "@/routes.config";
 import { MainWrapper } from "../ui/wrapper";
 
 // alphabet in half width characters in an 2d array
@@ -15,7 +14,6 @@ const ALPHABET = "abcdefghijklmnopqrstuvwxyz";
 export default function Keyboard() {
   const [alpha, setAlpha] = useState(ALPHABET);
   const [word, setWord] = useState("");
-  const router = useRouter();
 
   const addToWord = (char: string) => {
     setWord((prev) => prev + char);
