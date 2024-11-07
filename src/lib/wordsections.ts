@@ -54,14 +54,12 @@ const tvSection: Section[] = [
 
 const root: Section[] = [
   {
-    title: "Essen/Trinken",
-    icon: "🍹 🍝",
+    title: "Nahrung",
+    icon: "🍝",
     section: eatDrink,
   },
   { title: "Sitzen", icon: "🪑", section: sitSection },
   { title: "TV", icon: "📺", section: tvSection },
-  { title: "Ja" },
-  { title: "Nein" },
 ];
 
 export default root;
