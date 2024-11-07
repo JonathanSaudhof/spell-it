@@ -1,12 +1,12 @@
 "use client";
 import { readWord } from "@/lib/accessability";
 import pageRoutes from "@/routes.config";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { FaDeleteLeft } from "react-icons/fa6";
 import { GrPowerReset } from "react-icons/gr";
 import { MdSpaceBar } from "react-icons/md";
 import { Button, LinkButton } from "../ui/buttons";
-import { MainWrapper } from "../ui/wrapper";
+import { Grid, MainWrapper } from "../ui/wrapper";
 
 // alphabet in half width characters in an 2d array
 const ALPHABET = "abcdefghijklmnopqrstuvwxyz";
@@ -19,6 +19,15 @@ export default function Keyboard() {
     setWord((prev) => prev + char);
     setAlpha(ALPHABET);
   };
+
+  useEffect(() => {
+    if (word.length > 0) {
+      const soundSource = "/click.wav";
+      const sound = new Audio(soundSource);
+      sound.volume = 0.5;
+      sound.play();
+    }
+  }, [word]);
 
   const handleLeft = (newAlpha: string) => {
     if (newAlpha.length === 1) {
@@ -63,6 +72,7 @@ export default function Keyboard() {
           <FaDeleteLeft className="text-3xl md:text-4xl lg:text-5xl text-gray-500" />
         </button>
       </div>
+      <hr />
       <div className="w-full flex lg:flex-row gap-4">
         <LinkButton href={pageRoutes.selection}>🗂️</LinkButton>
         <button
@@ -84,7 +94,8 @@ export default function Keyboard() {
           <GrPowerReset />
         </button>
       </div>
-      <div className="grid grid-cols-5 xl:grid-cols-8 gap-8 items-center">
+      <hr />
+      <Grid>
         {buttonSlice.map((slice) => {
           if (slice.length === 0) {
             return null;
@@ -104,7 +115,7 @@ export default function Keyboard() {
             </Button>
           );
         })}
-      </div>
+      </Grid>
     </MainWrapper>
   );
 }

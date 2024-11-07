@@ -5,7 +5,7 @@ import wordSections, { Section } from "@/lib/wordsections";
 import pageRoutes from "@/routes.config";
 import React, { useState } from "react";
 import { LinkButton, TileButton } from "../ui/buttons";
-import { MainWrapper } from "../ui/wrapper";
+import { Grid, MainWrapper } from "../ui/wrapper";
 
 export default function Selection() {
   const [selectedSection, setSelectedSection] = useState<Section | null>(null);
@@ -23,7 +23,8 @@ export default function Selection() {
         <span className="text-5xl">⌨️</span>{" "}
         <span className="text-3xl">Neues Wort</span>
       </LinkButton>
-      <div className="grid grid-cols-8 grid-flow-row gap-8 grid-rows-4">
+      <hr />
+      <Grid>
         <TileButton
           onClick={() => {
             handleSectionClick({ title: "Ja" });
@@ -73,7 +74,7 @@ export default function Selection() {
             </React.Fragment>
           );
         })}
-      </div>
+      </Grid>
     </MainWrapper>
   );
 }
