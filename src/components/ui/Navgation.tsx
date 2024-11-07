@@ -1,3 +1,4 @@
+"use client";
 import { PropsWithChildren } from "react";
 import { twMerge } from "tailwind-merge";
 
@@ -8,7 +9,7 @@ export function Button({
   onClick,
 }: Readonly<
   PropsWithChildren<{
-    onClick: () => void;
+    onClick?: () => void;
     className?: string;
     disabled?: boolean;
   }>

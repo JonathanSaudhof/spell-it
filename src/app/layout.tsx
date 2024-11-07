@@ -1,7 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
-import dynamic from "next/dynamic";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -62,12 +61,6 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const EyeTracker = dynamic(
-    () => import("@/components/EyeTracker").then((mod) => mod.default),
-    {
-      ssr: false,
-    }
-  );
   return (
     <html lang="en">
       <head>
@@ -88,7 +81,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} bg-white antialiased`}
       >
-        <EyeTracker>{children}</EyeTracker>
+        {children}
       </body>
     </html>
   );
