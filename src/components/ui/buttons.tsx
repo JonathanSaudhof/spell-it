@@ -51,7 +51,8 @@ export function TileButton({
 export function LinkButton({
   href,
   children,
-}: PropsWithChildren<{ href: string }>) {
+  className,
+}: PropsWithChildren<{ href: string; className?: string }>) {
   const router = useRouter();
   return (
     <Button
@@ -61,7 +62,10 @@ export function LinkButton({
       onMouseEnter={() => {
         router.prefetch(href);
       }}
-      className="flex justify-center items-center gap-4 p-4 py-2 bg-gray-400 text-2xl md:text-4xl lg:text-6xl uppercase rounded-xl"
+      className={twMerge(
+        "flex justify-center items-center gap-4 p-4 py-2 bg-gray-400 text-2xl md:text-4xl lg:text-6xl uppercase rounded-xl",
+        className
+      )}
     >
       {children}
     </Button>

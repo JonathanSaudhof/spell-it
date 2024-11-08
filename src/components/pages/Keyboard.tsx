@@ -69,8 +69,10 @@ export default function Keyboard() {
         </div>
       </div>
       <hr />
-      <div className="w-full flex lg:flex-row gap-4">
-        <LinkButton href={pageRoutes.selection}>🗂️</LinkButton>
+      <div className="w-full flex lg:flex-row gap-8">
+        <LinkButton className="w-1/4" href={pageRoutes.selection}>
+          🗂️
+        </LinkButton>
         <button
           onClick={addSpace}
           className="flex justify-center items-center gap-4 px-4 py-2 bg-blue-300  text-2xl md:text-4xl lg:text-6xl uppercase rounded-xl flex-1"
@@ -78,23 +80,11 @@ export default function Keyboard() {
           <MdSpaceBar />
         </button>
         <Button
-          className="flex items-center gap-4 px-8 py-2 bg-blue-300 text-2xl md:text-4xl lg:text-6xl uppercase rounded-xl justify-center"
+          className="flex items-center gap-4 px-8 py-2 bg-blue-300 text-2xl md:text-4xl lg:text-6xl uppercase rounded-xl justify-center w-1/4"
           onClick={() => readWord(word)}
         >
           <span className="h-20 w-20 flex items-center justify-center">🔊</span>
         </Button>
-        <button
-          className="flex items-center gap-4 px-8 py-2 bg-blue-300 text-2xl md:text-4xl lg:text-6xl uppercase rounded-xl justify-center"
-          onClick={deleteLast}
-        >
-          <FaDeleteLeft />
-        </button>
-        <button
-          className="flex items-center gap-4 px-8 py-2 bg-blue-300 text-2xl md:text-4xl lg:text-6xl uppercase rounded-xl justify-center"
-          onClick={resetAll}
-        >
-          <GrPowerReset />
-        </button>
       </div>
       <hr />
       <Grid>
@@ -117,6 +107,18 @@ export default function Keyboard() {
             </Button>
           );
         })}
+        <button
+          className="flex items-center gap-4 px-8 py-2 bg-blue-300 text-2xl md:text-4xl lg:text-6xl uppercase rounded-xl justify-center"
+          onClick={deleteLast}
+        >
+          <FaDeleteLeft />
+        </button>
+        <button
+          className="flex items-center gap-4 px-8 py-2 bg-blue-300 text-2xl md:text-4xl lg:text-6xl uppercase rounded-xl justify-center"
+          onClick={resetAll}
+        >
+          <GrPowerReset />
+        </button>
       </Grid>
     </MainWrapper>
   );
