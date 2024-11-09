@@ -1,5 +1,5 @@
 "use client";
-import { readWord } from "@/lib/accessability";
+import { readWord } from "@/lib/sound";
 import pageRoutes from "@/routes.config";
 import { useEffect, useMemo, useState } from "react";
 import { FaDeleteLeft } from "react-icons/fa6";
@@ -69,7 +69,7 @@ export default function Keyboard() {
         </div>
       </div>
       <div className="w-full flex lg:flex-row gap-8">
-        <LinkButton className="w-1/4" href={pageRoutes.selection}>
+        <LinkButton className="w-1/4" href={pageRoutes.library}>
           🗂️
         </LinkButton>
         <button
