@@ -6,6 +6,7 @@ import pageRoutes from "@/routes.config";
 import React, { useState } from "react";
 import { LinkButton, TileButton } from "../ui/buttons";
 import { Grid, MainWrapper } from "../ui/wrapper";
+import { twMerge } from "tailwind-merge";
 
 export default function Selection() {
   const [selectedSection, setSelectedSection] = useState<Section | null>(null);
@@ -19,26 +20,25 @@ export default function Selection() {
 
   return (
     <MainWrapper>
-      <LinkButton href={pageRoutes.speller}>
-        <span className="text-5xl">⌨️</span>{" "}
-        <span className="text-3xl">Neues Wort</span>
-      </LinkButton>
-      <hr />
       <Grid>
         <TileButton
           onClick={() => {
             handleSectionClick({ title: "Ja" });
           }}
           text="Ja"
-          className="col-span-2  bg-amber-400"
+          className="col-span-2  bg-amber-400 h-32"
         />
         <TileButton
           onClick={() => {
             handleSectionClick({ title: "Nein" });
           }}
           text="Nein"
-          className="col-span-2 bg-red-400"
+          className="col-span-2 bg-red-400 h-32"
         />
+        <LinkButton href={pageRoutes.speller}>
+          <span className="text-5xl">⌨️</span>{" "}
+          <span className="text-3xl">Neues Wort</span>
+        </LinkButton>
         {wordSections.map((section, index) => {
           return (
             <React.Fragment key={`${section.title}-${index}`}>
@@ -48,11 +48,12 @@ export default function Selection() {
                 }}
                 icon={section.icon}
                 text={section.title}
-                className={
+                className={twMerge(
                   parentNode?.title === section.title
-                    ? "border-2 border-black bg-slate-400"
-                    : ""
-                }
+                    ? "border-2 border-black bg-orange-400"
+                    : "",
+                  section.section?.length ? null : "bg-blue-300"
+                )}
               />
               {selectedSection?.title === section.title ? (
                 <>

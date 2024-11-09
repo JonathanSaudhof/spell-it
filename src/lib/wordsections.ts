@@ -9,28 +9,35 @@ const eatDrink: Section[] = [
     title: "Wasser trinken",
   },
   {
-    title: "Wasser in den Mund",
+    title: "Stadthalle",
   },
   {
-    title: "Essen",
-  },
-  {
-    title: "Küche",
+    title: "Wende",
   },
 ];
 
 const sitSection: Section[] = [
   {
-    title: "Sitzen",
+    title: "Hinsetzen",
   },
   {
-    title: "Hinlegen",
+    title: "Hochziehen",
   },
   {
     title: "Armlehne",
   },
   {
-    title: "Bein runter",
+    title: "Bein runter/hoch",
+  },
+  {
+    title: "Nacken",
+  },
+  {
+    title: "Arm",
+    icon: "💪🏼",
+  },
+  {
+    title: "Rücken",
   },
 ];
 
@@ -48,17 +55,87 @@ const tvSection: Section[] = [
     title: "Leiser",
   },
   {
-    title: "Sender",
+    title: "Sender wechseln",
+  },
+];
+
+const bedSection: Section[] = [
+  {
+    title: "Fußteil verstellen",
+    icon: "🦵🏼",
+  },
+  {
+    title: "Kopfteil verstellen",
+    icon: "💆🏽‍♀️",
+  },
+];
+
+const medicationSection: Section[] = [
+  {
+    title: "Macrogol",
+  },
+  {
+    title: "Sativex",
+  },
+  {
+    title: "Tabletten",
+  },
+  {
+    title: "Nasenspray",
+  },
+  {
+    title: "Tropfen",
+  },
+  {
+    title: "Spray",
+  },
+];
+
+const careSection: Section[] = [
+  {
+    title: "Augen",
+    icon: "👀",
+  },
+  {
+    title: "Nase putzen",
+    icon: "🤧",
+  },
+  {
+    title: "Gesicht waschen",
+  },
+  {
+    title: "Puhsten",
+    icon: "💨",
+  },
+  {
+    title: "Zähne putzen",
+    icon: "🦷",
+  },
+  {
+    title: "Brille auf/ab",
+    icon: "👓",
+  },
+  {
+    title: "Schuhe",
+    icon: "👟",
   },
 ];
 
 const root: Section[] = [
+  { title: "Toilette", icon: "🚽" },
+  { title: "Hose wechseln", icon: "🩲🔁" },
+  { title: "Hose aufschneiden", icon: "🩲✂️" },
+  { title: "Hinlegen", icon: "😴" },
+  { title: "Schmerzen", icon: "🤕" },
+  { title: "Sitzen", icon: "🪑", section: sitSection },
+  { title: "Flege", icon: "🧍🏽‍♀️", section: careSection },
   {
-    title: "Nahrung",
+    title: "Essen",
     icon: "🍝",
     section: eatDrink,
   },
-  { title: "Sitzen", icon: "🪑", section: sitSection },
+  { title: "Medikamente", icon: "💊", section: medicationSection },
+  { title: "Bett", icon: "🛏️", section: bedSection },
   { title: "TV", icon: "📺", section: tvSection },
 ];
 

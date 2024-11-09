@@ -68,7 +68,6 @@ export default function Keyboard() {
           </div>
         </div>
       </div>
-      <hr />
       <div className="w-full flex lg:flex-row gap-8">
         <LinkButton className="w-1/4" href={pageRoutes.selection}>
           🗂️
@@ -100,7 +99,7 @@ export default function Keyboard() {
             >
               <span
                 key={slice}
-                className="h-24 w-24 flex items-center justify-center"
+                className="h-20 w-20 flex items-center justify-center"
               >
                 {slice}
               </span>
