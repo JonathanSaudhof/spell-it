@@ -1,21 +1,44 @@
-# Tell it with your eyes
+# Spell it with your eyes
 
-## Getting Started
+Use Apple iPhones and iPads accessibility feature for eye tracking (iOS /iPadOS >=18)
+what you want with your eyes.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+This is an easy help for people who are not able speak by them self due to medical conditions.
+We rent an iPad pro 12.9" (2021) and with some good calibration it works pretty good. Try it out.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- NextJS, Tailwind
+- offline first: PWA for using it while you are offline
+- hard coded words
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+# How to use it
 
-## Learn More
+1. Fork the Repository
 
-To learn more about Next.js, take a look at the following resources:
+2. Add the word you need in which sections
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```shell
+/src/lib/library.ts
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+3. Deploy it on Vercel or the platform of you choice
+
+   See instructions below for vercel.
+
+4. Visit https://your-domain/
+
+5. Use the share button of your browser and add it to the home screen.
+
+6. Enable Eye tracking on your device
+
+[Ipad instructions for iPadOS 18](https://support.apple.com/en-jo/guide/ipad/ipad2cd35723/ipados)
+
+You will have to calibrate the eye tracking tool.
+
+7. Open the app an start using it.
+
+## Questions and feature requests
+
+If you have questions or feature requests create an issue or write me an email. ✌🏻
 
 ## Deploy on Vercel
 

@@ -1,7 +1,7 @@
 "use client";
 
-import { readWord } from "@/lib/accessability";
-import wordSections, { Section } from "@/lib/wordsections";
+import { readWord } from "@/lib/sound";
+import wordSections, { Section } from "@/lib/library";
 import pageRoutes from "@/routes.config";
 import React, { useState } from "react";
 import { LinkButton, TileButton } from "../ui/buttons";
@@ -35,7 +35,7 @@ export default function Selection() {
           text="Nein"
           className="col-span-2 bg-red-400 h-32"
         />
-        <LinkButton href={pageRoutes.speller}>
+        <LinkButton href={pageRoutes.keyboard}>
           <span className="text-5xl">⌨️</span>{" "}
           <span className="text-3xl">Neues Wort</span>
         </LinkButton>

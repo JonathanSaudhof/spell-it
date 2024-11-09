@@ -1,5 +1,5 @@
 const pageRoutes = {
-  speller: "/",
-  selection: "/selection",
+  keyboard: "/",
+  library: "/library",
 };
 export default pageRoutes;
